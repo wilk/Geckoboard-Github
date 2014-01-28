@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller ('Repocontroller', ['$scope', 'repo', function ($scope, repo) {
+app.controller ('Repocontroller', ['$scope', '$q', '$http', 'repo', function ($scope, $q, $http, repo) {
     console.log (repo);
 
     repo.$promise.then (function (data) {

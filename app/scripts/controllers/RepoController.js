@@ -1,7 +1,11 @@
 'use strict';
 
-app.controller ('Repocontroller', ['$scope', 'repo', function ($scope, repos) {
+app.controller ('Repocontroller', ['$scope', 'repo', function ($scope, repo) {
     console.log (repo);
 
-    $scope.repo = repo;
+    repo.$promise.then (function (data) {
+        $scope.repo = data;
+    }, function (error) {
+        // @todo: handle the error when load single repo
+    });
 }]);

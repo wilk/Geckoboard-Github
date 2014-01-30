@@ -2,7 +2,11 @@
 
 .repos {
   .list-container {
-    margin-top: 245px;
+    margin-top: 218px;
+  }
+
+  .border-split {
+    border-bottom: 1px solid $softColor;
   }
 
   .statistics {

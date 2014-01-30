@@ -1,0 +1,39 @@
+@import 'util';
+
+.user {
+  .main-box {
+    background-color: #fff;
+  }
+  
+  .fixed-box {
+    background-color: $softColor;
+    padding: 10px 0;
+  }
+
+  .avatar {
+    width: 220px;
+    height: 220px;
+  }
+
+  .details {
+    border-top: 1px $softColor solid;
+    padding-top: 10px;
+
+    .detail-icon {
+      margin-right: 5px;
+    }
+  }
+
+  .nickname {
+    color: $smoothColor;
+  }
+
+  .statistics {
+    margin-top: 25px;
+    text-align: center;
+
+    td {
+      border: none;
+    }
+  }
+}

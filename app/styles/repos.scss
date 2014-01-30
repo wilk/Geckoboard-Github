@@ -1,0 +1,25 @@
+@import 'util';
+
+.repos {
+  .list-container {
+    margin-top: 245px;
+  }
+
+  .statistics {
+    text-align: center;
+
+    td {
+      border: none;
+    }
+  }
+
+  .detail-icon {
+    color: $smoothColor;
+    font-size: 36px;
+    margin-top: 40px;
+  }
+
+  .repo-title {
+    margin-top: 50px;
+  }
+}

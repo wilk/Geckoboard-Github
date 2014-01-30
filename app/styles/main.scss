@@ -4,6 +4,10 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 @import 'user';
 @import 'repos';
 
+.borderful {
+  border: 3px solid $softColor;
+}
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;

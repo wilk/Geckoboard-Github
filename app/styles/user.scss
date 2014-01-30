@@ -4,7 +4,7 @@
   .main-box {
     background-color: #fff;
   }
-  
+
   .fixed-box {
     background-color: $softColor;
     padding: 10px 0;
@@ -13,6 +13,7 @@
   .avatar {
     width: 220px;
     height: 220px;
+    border-radius: 6px;
   }
 
   .details {
@@ -29,7 +30,7 @@
   }
 
   .statistics {
-    margin-top: 25px;
+    margin-top: 35px;
     text-align: center;
 
     td {

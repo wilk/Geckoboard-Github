@@ -1,8 +1,39 @@
-<div ng-repeat="repository in reposInfo">
-    <p><b>Name: </b>{{repository.name}}</p>
+<div class="repos">
+    <div class="repos list-container">
+        <div class="row" ng-repeat="repository in repos">
+            <!-- Icon -->
+            <div class="col-xs-3 col-md-1">
+                <span class="repos detail-icon glyphicon glyphicon-search"></span>
+            </div>
+
+            <!-- Description -->
+            <div class="col-xs-9 col-md-7">
+                <h3 class="repos repo-title"><a href="#/repos/{{user.login}}/{{repository.name}}">{{repository.name}}</a></h3>
+            </div>
+
+            <!-- Statistics -->
+            <div class="col-xs-6 col-md-4">
+                <div class="table-responsive">
+                    <table class="table repos statistics">
+                        <tr class="repos smooth">
+                            <td><span class="glyphicon glyphicon-search"></span></td>
+                            <td><span class="glyphicon glyphicon-search"></span></td>
+                            <td><span class="glyphicon glyphicon-search"></span></td>
+                        </tr>
+                        <tr class="repos impressive">
+                            <td>{{repository.watchers_count}}</td>
+                            <td>{{repository.stargazers_count}}</td>
+                            <td>{{repository.forks_count}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   <!-- <p><b>Name: </b>{{repository.name}}</p>
     <p><b>Full Name: </b>{{repository.full_name}}</p>
     <p><b>Fork: </b>{{repository.fork}}</p>
     <p><b>Stargazers: </b>{{repository.stargazers_count}}</p>
     <p><b>Watchers: </b>{{repository.watchers_count}}</p>
-    <p><b>Forks: </b>{{repository.forks_count}}</p>
-</div>
+    <p><b>Forks: </b>{{repository.forks_count}}</p> -->

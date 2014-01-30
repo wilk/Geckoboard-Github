@@ -1,0 +1,89 @@
+/**
+ * Github Octicons font styles
+ *
+ * Information: https://github.com/styleguide/css/7.0
+ * Font source: https://github.com/github/developer.github.com/tree/master/static/shared/css
+ **/
+
+@font-face {
+  font-family: 'octiconsregular';
+  src: url('../webfonts/octicons-regular-webfont.eot');
+  src: url('../webfonts/octicons-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../webfonts/octicons-regular-webfont.woff') format('woff'),
+  url('../webfonts/octicons-regular-webfont.svg#octiconsregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin base-icon ($size) {
+  font-family: 'octiconsregular';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  font-size: #{$size}px;
+  width: #{$size}px;
+  height: #{$size}px;
+}
+
+.mega-icon {
+  @include base-icon (36);
+}
+
+.big-icon {
+  @include base-icon (24);
+}
+
+.small-icon {
+  @include base-icon (16);
+}
+
+.mega-icon-invertocat:before {
+  content: "\f00a";
+}
+
+.octicon-calendar:before {
+  content: "\f068";
+}
+
+.octicon-location:before {
+  content: "\f060";
+}
+
+.octicon-mail:before {
+  content: "\f03b";
+}
+
+.octicon-link:before {
+  content: "\f05c";
+}
+
+.octicon-clock:before {
+  content: "\f046";
+}
+
+.octicon-followers:before, .octicon-following:before {
+  content: "\f019";
+}
+
+.octicon-star:before {
+  content: "\f02a";
+}
+
+.octicon-repo:before {
+  content: "\f001";
+}
+
+.octicon-repo-forked:before {
+  content: "\f002";
+}
+
+.octicon-eye:before {
+  content: "\f04e";
+}
+
+.octicon-fork:before {
+  content: "\f020";
+}

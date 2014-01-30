@@ -1,9 +1,9 @@
 <div class="repos">
     <div class="repos list-container">
-        <div class="row" ng-repeat="repository in repos">
+        <div class="row border-split" ng-repeat="repository in repos">
             <!-- Icon -->
             <div class="col-xs-3 col-md-1">
-                <span class="repos detail-icon glyphicon glyphicon-search"></span>
+                <span class="repos detail-icon mega-icon octicon-{{repository.fork ? 'repo-forked' : 'repo'}}"></span>
             </div>
 
             <!-- Description -->
@@ -16,9 +16,9 @@
                 <div class="table-responsive">
                     <table class="table repos statistics">
                         <tr class="repos smooth">
-                            <td><span class="glyphicon glyphicon-search"></span></td>
-                            <td><span class="glyphicon glyphicon-search"></span></td>
-                            <td><span class="glyphicon glyphicon-search"></span></td>
+                            <td><span class="big-icon octicon-eye"></span></td>
+                            <td><span class="big-icon octicon-star"></span></td>
+                            <td><span class="big-icon octicon-fork"></span></td>
                         </tr>
                         <tr class="repos impressive">
                             <td>{{repository.watchers_count}}</td>

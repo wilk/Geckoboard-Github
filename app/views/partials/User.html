@@ -1,11 +1,46 @@
-<div>
-    <img src="{{userInfo.avatar_url}}" />
+<!-- User template -->
+<div class="user main-box navbar navbar-fixed-top">
+    <div class="container">
+        <div class="user fixed-box row">
+            <!-- Avatar -->
+            <div class="col-xs-6 col-md-4">
+                <img class="user avatar" src="{{userInfo.avatar_url}}" />
+            </div>
 
-    <p><b>Name: </b>{{userInfo.name}}</p>
-    <p><b>Home: </b>{{userInfo.html_url}}</p>
-    <p><b>Blog: </b>{{userInfo.blog}}</p>
-    <p><b>Email: </b>{{userInfo.email}}</p>
-    <p><b>Nickname: </b>{{userInfo.login}}</p>
-    <p><b>Followers: </b>{{userInfo.followers}}</p>
-    <p><b>Following: </b>{{userInfo.following}}</p>
+            <!-- Details -->
+            <div class="col-xs-5 col-md-3">
+                <h3><a href="{{userInfo.html_url}}">{{userInfo.name}}</a></h3>
+                <h4 class="user smooth" style="font-size:19px;">{{userInfo.login}}</h4>
+
+                <div class="user details">
+                    <p><span class="user smooth detail-icon glyphicon glyphicon-search"></span>{{userInfo.location}}</p>
+                    <p><span class="user smooth detail-icon glyphicon glyphicon-search"></span><a href="mailto:{{userInfo.email}}">{{userInfo.email}}</a></p>
+                    <p><span class="user smooth detail-icon glyphicon glyphicon-search"></span><a href="{{userInfo.blog}}">{{userInfo.blog}}</a></p>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="col-xs-7 col-md-5">
+                <div class="table-responsive">
+                    <table class="table user statistics">
+                        <tr class="user smooth">
+                            <td><span class="glyphicon glyphicon-search"></span></td>
+                            <td><span class="glyphicon glyphicon-search"></span></td>
+                            <td><span class="glyphicon glyphicon-search"></span></td>
+                        </tr>
+                        <tr class="user impressive">
+                            <td>{{userInfo.following}}</td>
+                            <td>{{userInfo.followers}}</td>
+                            <td>{{userInfo.starred}}</td>
+                        </tr>
+                        <tr class="user smooth">
+                            <td>following</td>
+                            <td>starred</td>
+                            <td>followers</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

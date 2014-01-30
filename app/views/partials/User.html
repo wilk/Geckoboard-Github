@@ -8,30 +8,31 @@
             </div>
 
             <!-- Details -->
-            <div class="col-xs-5 col-md-3">
+            <div class="col-xs-6 col-md-4">
                 <h3><a href="{{userInfo.html_url}}">{{userInfo.name}}</a></h3>
                 <h4 class="user smooth" style="font-size:19px;">{{userInfo.login}}</h4>
 
                 <div class="user details">
-                    <p><span class="user smooth detail-icon glyphicon glyphicon-search"></span>{{userInfo.location}}</p>
-                    <p><span class="user smooth detail-icon glyphicon glyphicon-search"></span><a href="mailto:{{userInfo.email}}">{{userInfo.email}}</a></p>
-                    <p><span class="user smooth detail-icon glyphicon glyphicon-search"></span><a href="{{userInfo.blog}}">{{userInfo.blog}}</a></p>
+                    <p><span class="user smooth detail-icon small-icon octicon-location"></span>{{userInfo.location}}</p>
+                    <p><span class="user smooth detail-icon small-icon octicon-mail"></span><a href="mailto:{{userInfo.email}}">{{userInfo.email}}</a></p>
+                    <p><span class="user smooth detail-icon small-icon octicon-link"></span><a href="{{userInfo.blog}}">{{userInfo.blog}}</a></p>
+                    <p><span class="user smooth detail-icon small-icon octicon-clock"></span>Joined on {{userInfo.created_at | date:'MMM d, yyyy'}}</p>
                 </div>
             </div>
 
             <!-- Statistics -->
-            <div class="col-xs-7 col-md-5">
+            <div class="col-xs-6 col-md-4">
                 <div class="table-responsive">
                     <table class="table user statistics">
                         <tr class="user smooth">
-                            <td><span class="glyphicon glyphicon-search"></span></td>
-                            <td><span class="glyphicon glyphicon-search"></span></td>
-                            <td><span class="glyphicon glyphicon-search"></span></td>
+                            <td><span class="big-icon octicon-following"></span></td>
+                            <td><span class="big-icon octicon-star"></span></td>
+                            <td><span class="big-icon octicon-followers"></span></td>
                         </tr>
                         <tr class="user impressive">
                             <td>{{userInfo.following}}</td>
-                            <td>{{userInfo.followers}}</td>
                             <td>{{userInfo.starred}}</td>
+                            <td>{{userInfo.followers}}</td>
                         </tr>
                         <tr class="user smooth">
                             <td>following</td>

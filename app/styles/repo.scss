@@ -1,0 +1,31 @@
+@import 'util';
+
+.repo {
+  .border-split {
+    border-bottom: 1px solid $softColor;
+  }
+
+  .statistics {
+    text-align: center;
+
+    td {
+      border: none;
+    }
+  }
+
+  .detail-icon {
+    color: $smoothColor;
+    font-size: 36px;
+    margin-top: 40px;
+  }
+
+  .repo-title {
+    margin-top: 39px;
+  }
+
+  .statistic-box {
+    background-color: #eee;
+    height: 150px;
+    border: 3px solid #fff;
+  }
+}

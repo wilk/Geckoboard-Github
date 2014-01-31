@@ -5,9 +5,18 @@ app.directive ('ghRepos', function () {
         restrict: 'E' ,
         templateUrl: '../../views/partials/Repos.html' ,
         link: function (scope, element, attr) {
-            scope.$watch ('repos', function (repos) {
-                if (repos) {
-                    //
+            scope.$on ('repos', function (event) {
+                if (event.currentScope.repos) {
+                    scope.repos = event.currentScope.repos;
+
+                    $('.repo').fadeOut (1000, function () {
+                        $('.repos').fadeIn ();
+                    });
+                }
+                else {
+                    $('.repos').fadeOut (1000, function () {
+                        $('.repo').fadeIn ();
+                    });
                 }
             });
         }

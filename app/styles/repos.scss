@@ -1,10 +1,6 @@
 @import 'util';
 
 .repos {
-  .list-container {
-    margin-top: 218px;
-  }
-
   .border-split {
     border-bottom: 1px solid $softColor;
   }
@@ -24,6 +20,6 @@
   }
 
   .repo-title {
-    margin-top: 50px;
+    margin-top: 39px;
   }
 }

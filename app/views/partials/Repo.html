@@ -1,11 +1,74 @@
-<div>
+<div class="repo {{repo ? hide : ''}}">
+    <div class="row border-split">
+        <!-- Icon -->
+        <div class="col-xs-3 col-md-1">
+            <span class="repo detail-icon mega-icon octicon-{{repo.fork ? 'repo-forked' : 'repo'}}"></span>
+        </div>
+
+        <!-- Description -->
+        <div class="col-xs-9 col-md-7">
+            <h3 class="repo repo-title"><a href="#" ng-click="eventCtrl.showRepos ($event);">{{user.login}}</a> / {{repo.name}}</h3>
+            <p class="smooth">{{repo.description}}</p>
+        </div>
+
+        <!-- Statistics -->
+        <div class="col-xs-6 col-md-4">
+            <div class="table-responsive">
+                <table class="table repo statistics">
+                    <tr class="repo smooth">
+                        <td><span class="big-icon octicon-eye"></span></td>
+                        <td><span class="big-icon octicon-star"></span></td>
+                        <td><span class="big-icon octicon-fork"></span></td>
+                    </tr>
+                    <tr class="repo impressive">
+                        <td>{{repo.subscribers_count}}</td>
+                        <td>{{repo.stargazers_count}}</td>
+                        <td>{{repo.forks_count}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row border-split">
+        <div class="col-xs-8 col-md-6 statistic-box">
+            <div class="text-center" style="margin-top: 34px;">
+                <p class="impressive">{{repo.branches}}</p>
+                <p class="smooth">branches</p>
+            </div>
+        </div>
+        <div class="col-xs-8 col-md-6 statistic-box">
+            <div class="text-center" style="margin-top: 34px;">
+                <p class="impressive">{{repo.releases}}</p>
+                <p class="smooth">releases</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row border-split">
+        <div class="col-xs-8 col-md-6 statistic-box">
+            <div class="text-center" style="margin-top: 34px;">
+                <p class="impressive">{{repo.issues}}</p>
+                <p class="smooth">issues</p>
+            </div>
+        </div>
+        <div class="col-xs-8 col-md-6 statistic-box">
+            <div class="text-center" style="margin-top: 34px;">
+                <p class="impressive">{{repo.contributors}}</p>
+                <p class="smooth">contributors</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div>
     <p><b>Name: </b>{{repoInfo.name}}</p>
     <p><b>Full Name: </b>{{repoInfo.full_name}}</p>
     <p><b>Url: </b>{{repoInfo.html_url}}</p>
     <p><b>Description: </b>{{repoInfo.description}}</p>
     <p><b>Fork: </b>{{repoInfo.fork}}</p>
     <p><b>Stargazers: </b>{{repoInfo.stargazers_count}}</p>
-    <p><b>Watchers: </b>{{repoInfo.watchers_count}}</p>
+    <p><b>Watchers: </b>{{repoInfo.subscribers_count}}</p>
     <p><b>Forks: </b>{{repoInfo.forks_count}}</p>
     <p><b>Branches: </b>{{repoInfo.branches}}</p>
     <p><b>Releases: </b>{{repoInfo.releases}}</p>
@@ -18,4 +81,4 @@
     </p>
     <p><b>Created at: </b>{{repoInfo.created_at}}</p>
     <p><b>Updated at: </b>{{repoInfo.updated_at}}</p>
-</div>
+</div>-->

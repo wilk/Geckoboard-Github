@@ -46,7 +46,7 @@ var app = angular
                 }
             })
             .when ('/repos/:user/:repo', {
-                templateUrl: 'views/repo.html' ,
+                templateUrl: 'views/main.html' ,
                 controller: 'RepoController' ,
                 resolve: {
                     repo: ['$route', '$q', 'RepoService', function ($route, $q, RepoService) {
@@ -76,6 +76,28 @@ var app = angular
                                 repo.issues = data.issues.length;
 
                                 deferred.resolve (repo);
+                            }, function (error) {
+                                deferred.reject (error);
+                            });
+
+                        return deferred.promise;
+                    }] ,
+                    user: ['$route', '$q', 'UserService', function ($route, $q, UserService) {
+                        var deferred = $q.defer () ,
+                            userParam = $route.current.params.user ,
+                            userRequest = UserService.get ({user: userParam}) ,
+                            starredRequest = UserService.starred ({user: userParam});
+
+                        $q
+                            .all ({
+                                user: userRequest.$promise ,
+                                starred: starredRequest.$promise
+                            })
+                            .then (function (data) {
+                                var user = data.user;
+                                user.starred = data.starred.length;
+
+                                deferred.resolve (user);
                             }, function (error) {
                                 deferred.reject (error);
                             });

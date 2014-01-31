@@ -1,8 +1,6 @@
 'use strict';
 
 app.controller ('MainController', ['$scope', 'user', 'repos', function ($scope, user, repos) {
-    console.log (user, repos);
-
     user.$promise.then (function (data) {
         data.avatar_url += '&s=440';
 

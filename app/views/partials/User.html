@@ -1,46 +1,44 @@
 <!-- User template -->
-<div class="user main-box navbar navbar-fixed-top">
-    <div class="container">
-        <div class="user fixed-box row">
-            <!-- Avatar -->
-            <div class="col-xs-6 col-md-4">
-                <img class="user avatar" src="{{userInfo.avatar_url}}" />
+<div class="user main-box">
+    <div class="user fixed-box row">
+        <!-- Avatar -->
+        <div class="col-xs-6 col-md-4">
+            <img class="user avatar" src="{{user.avatar_url}}" />
+        </div>
+
+        <!-- Details -->
+        <div class="col-xs-6 col-md-4">
+            <h3><a href="{{userInfo.html_url}}">{{user.name}}</a></h3>
+            <h4 class="user smooth" style="font-size:19px;">{{user.login}}</h4>
+
+            <div class="user details">
+                <p><span class="user smooth detail-icon small-icon octicon-location"></span>{{user.location}}</p>
+                <p><span class="user smooth detail-icon small-icon octicon-mail"></span><a href="mailto:{{user.email}}">{{user.email}}</a></p>
+                <p><span class="user smooth detail-icon small-icon octicon-link"></span><a href="{{user.blog}}">{{user.blog}}</a></p>
+                <p><span class="user smooth detail-icon small-icon octicon-clock"></span>Joined on {{user.created_at | date:'MMM d, yyyy'}}</p>
             </div>
+        </div>
 
-            <!-- Details -->
-            <div class="col-xs-6 col-md-4">
-                <h3><a href="{{userInfo.html_url}}">{{userInfo.name}}</a></h3>
-                <h4 class="user smooth" style="font-size:19px;">{{userInfo.login}}</h4>
-
-                <div class="user details">
-                    <p><span class="user smooth detail-icon small-icon octicon-location"></span>{{userInfo.location}}</p>
-                    <p><span class="user smooth detail-icon small-icon octicon-mail"></span><a href="mailto:{{userInfo.email}}">{{userInfo.email}}</a></p>
-                    <p><span class="user smooth detail-icon small-icon octicon-link"></span><a href="{{userInfo.blog}}">{{userInfo.blog}}</a></p>
-                    <p><span class="user smooth detail-icon small-icon octicon-clock"></span>Joined on {{userInfo.created_at | date:'MMM d, yyyy'}}</p>
-                </div>
-            </div>
-
-            <!-- Statistics -->
-            <div class="col-xs-6 col-md-4">
-                <div class="table-responsive">
-                    <table class="table user statistics">
-                        <tr class="user smooth">
-                            <td><span class="big-icon octicon-following"></span></td>
-                            <td><span class="big-icon octicon-star"></span></td>
-                            <td><span class="big-icon octicon-followers"></span></td>
-                        </tr>
-                        <tr class="user impressive">
-                            <td>{{userInfo.following}}</td>
-                            <td>{{userInfo.starred}}</td>
-                            <td>{{userInfo.followers}}</td>
-                        </tr>
-                        <tr class="user smooth">
-                            <td>following</td>
-                            <td>starred</td>
-                            <td>followers</td>
-                        </tr>
-                    </table>
-                </div>
+        <!-- Statistics -->
+        <div class="col-xs-6 col-md-4">
+            <div class="table-responsive">
+                <table class="table user statistics">
+                    <tr class="user smooth">
+                        <td><span class="big-icon octicon-following"></span></td>
+                        <td><span class="big-icon octicon-star"></span></td>
+                        <td><span class="big-icon octicon-followers"></span></td>
+                    </tr>
+                    <tr class="user impressive">
+                        <td>{{user.following}}</td>
+                        <td>{{user.starred}}</td>
+                        <td>{{user.followers}}</td>
+                    </tr>
+                    <tr class="user smooth">
+                        <td>following</td>
+                        <td>starred</td>
+                        <td>followers</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

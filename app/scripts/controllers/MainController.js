@@ -14,4 +14,6 @@ app.controller ('MainController', ['$scope', 'user', 'repos', function ($scope, 
     }, function (error) {
         // @todo: handle the error on repos load
     });
+
+    delete $scope.repo;
 }]);

@@ -9,13 +9,13 @@ app.directive ('ghRepos', function () {
                 if (event.currentScope.repos) {
                     scope.repos = event.currentScope.repos;
 
-                    $('.repo').fadeOut (1000, function () {
-                        $('.repos').fadeIn ();
+                    $('gh-repo').fadeOut (500, function () {
+                        element.fadeIn ();
                     });
                 }
                 else {
-                    $('.repos').fadeOut (1000, function () {
-                        $('.repo').fadeIn ();
+                    element.fadeOut (500, function () {
+                        $('.gh-repo').fadeIn ();
                     });
                 }
             });

@@ -3,15 +3,14 @@
         <div class="row border-split" ng-repeat="repository in repos | orderBy:'stargazers_count':true">
             <!-- Icon -->
             <div class="col-xs-3 col-md-1">
-                <span class="repos detail-icon mega-icon octicon-{{repository.fork ? 'repo-forked' : 'repo'}}"></span>
+                <!--octicon-{{repository.fork ? 'repo-forked' : 'repo'}}-->
+                <span class="repos detail-icon mega-icon {{repository.iconCls}}"></span>
             </div>
 
             <!-- Description -->
             <div class="col-xs-9 col-md-7">
                 <h3 class="repos repo-title">
-                    <!-- href="javascript:void(0)"ng-click="reposCtrl.showRepoDetails (user.login, repository.name);">-->
-                    <!--<a href="#/repos/{{user.login}}/{{repository.name}}">{{repository.name}}</a>-->
-                    <a href="#" ng-click="eventCtrl.showRepoDetails (user.login, repository.name, $event);">{{repository.name}}</a>
+                    <a gh-repo-link="{{repository}}" href="#/repos/{{user.login}}/{{repository.name}}">{{repository.name}}</a>
                 </h3>
                 <p class="smooth">{{repository.language}}</p>
             </div>

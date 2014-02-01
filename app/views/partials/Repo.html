@@ -1,4 +1,4 @@
-<div class="repo {{repo ? hide : ''}}">
+<div class="repo">
     <div class="row border-split">
         <!-- Icon -->
         <div class="col-xs-3 col-md-1">
@@ -7,7 +7,7 @@
 
         <!-- Description -->
         <div class="col-xs-9 col-md-7">
-            <h3 class="repo repo-title"><a href="#" ng-click="eventCtrl.showRepos ($event);">{{user.login}}</a> / {{repo.name}}</h3>
+            <h3 class="repo repo-title"><a href="#/users/{{user.login}}">{{user.login}}</a> / {{repo.name}}</h3>
             <p class="smooth">{{repo.description}}</p>
         </div>
 
@@ -30,15 +30,24 @@
         </div>
     </div>
 
+    <div class="row border-split {{repo.languages.length > 0 ? '' : hide}}">
+        <div ng-repeat="language in repo.languages" class="col-xs-{{(12/repo.languages.length) + 2}} col-md-{{12/repo.languages.length}} statistic-box percentage{{$index}}">
+            <div class="text-center statistic">
+                <p class="impressive">{{language.percentage}}%</p>
+                <p class="smooth">{{language.name}}</p>
+            </div>
+        </div>
+    </div>
+
     <div class="row border-split">
         <div class="col-xs-8 col-md-6 statistic-box">
-            <div class="text-center" style="margin-top: 34px;">
+            <div class="text-center statistic">
                 <p class="impressive">{{repo.branches}}</p>
                 <p class="smooth">branches</p>
             </div>
         </div>
         <div class="col-xs-8 col-md-6 statistic-box">
-            <div class="text-center" style="margin-top: 34px;">
+            <div class="text-center statistic">
                 <p class="impressive">{{repo.releases}}</p>
                 <p class="smooth">releases</p>
             </div>
@@ -47,13 +56,13 @@
 
     <div class="row border-split">
         <div class="col-xs-8 col-md-6 statistic-box">
-            <div class="text-center" style="margin-top: 34px;">
+            <div class="text-center statistic">
                 <p class="impressive">{{repo.issues}}</p>
                 <p class="smooth">issues</p>
             </div>
         </div>
         <div class="col-xs-8 col-md-6 statistic-box">
-            <div class="text-center" style="margin-top: 34px;">
+            <div class="text-center statistic">
                 <p class="impressive">{{repo.contributors}}</p>
                 <p class="smooth">contributors</p>
             </div>

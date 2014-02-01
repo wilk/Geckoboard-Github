@@ -20,28 +20,37 @@ var app = angular
                 resolve: {
                     user: ['$route', '$q', 'UserService', function ($route, $q, UserService) {
                         var deferred = $q.defer () ,
-                            userParam = $route.current.params.user ,
-                            userRequest = UserService.get ({user: userParam}) ,
-                            starredRequest = UserService.starred ({user: userParam});
+                            user = UserService.data ();
 
-                        $q
-                            .all ({
-                                user: userRequest.$promise ,
-                                starred: starredRequest.$promise
-                            })
-                            .then (function (data) {
-                                var user = data.user;
-                                user.starred = data.starred.length;
-
-                                deferred.resolve (user);
-                            }, function (error) {
-                                deferred.reject (error);
-                            });
+                        if ($.isEmptyObject (user)) {
+                            UserService
+                                .populate ($route.current.params.user)
+                                .then (function (data) {
+                                    deferred.resolve (data);
+                                }, function (error) {
+                                    deferred.reject (error);
+                                });
+                        }
+                        else deferred.resolve (user);
 
                         return deferred.promise;
                     }] ,
-                    repos: ['$route', 'ReposService', function ($route, ReposService) {
-                        return ReposService.query ({user: $route.current.params.user});
+                    repos: ['$route', '$q', 'ReposService', function ($route, $q, ReposService) {
+                        var deferred = $q.defer () ,
+                            repos = ReposService.data ();
+
+                        if ($.isEmptyObject (repos)) {
+                            ReposService
+                                .populate ($route.current.params.user)
+                                .then (function (data) {
+                                    deferred.resolve (data);
+                                }, function (error) {
+                                    deferred.reject (error);
+                                });
+                        }
+                        else deferred.resolve (repos);
+
+                        return deferred.promise;
                     }]
                 }
             })
@@ -50,57 +59,22 @@ var app = angular
                 controller: 'RepoController' ,
                 resolve: {
                     repo: ['$route', '$q', 'RepoService', function ($route, $q, RepoService) {
-                        var deferred = $q.defer () ,
-                            userParam = $route.current.params.user ,
-                            repoParam = $route.current.params.repo ,
-                            repoRequest = RepoService.get ({user: userParam, repo: repoParam}) ,
-                            branchesRequest = RepoService.branches ({user: userParam, repo: repoParam}) ,
-                            releasesRequest = RepoService.releases ({user: userParam, repo: repoParam}) ,
-                            contributorsRequest = RepoService.contributors ({user: userParam, repo: repoParam}) ,
-                            issuesRequest = RepoService.issues ({user: userParam, repo: repoParam});
-
-                        $q
-                            .all ({
-                                repo: repoRequest.$promise ,
-                                branches: branchesRequest.$promise ,
-                                releases: releasesRequest.$promise ,
-                                contributors: contributorsRequest.$promise ,
-                                issues: issuesRequest.$promise
-                            })
-                            .then (function (data) {
-                                var repo = data.repo;
-
-                                repo.branches = data.branches.length;
-                                repo.releases = data.releases.length;
-                                repo.contributors = data.contributors.length;
-                                repo.issues = data.issues.length;
-
-                                deferred.resolve (repo);
-                            }, function (error) {
-                                deferred.reject (error);
-                            });
-
-                        return deferred.promise;
+                        return RepoService.populate ($route.current.params.user, $route.current.params.repo);
                     }] ,
                     user: ['$route', '$q', 'UserService', function ($route, $q, UserService) {
                         var deferred = $q.defer () ,
-                            userParam = $route.current.params.user ,
-                            userRequest = UserService.get ({user: userParam}) ,
-                            starredRequest = UserService.starred ({user: userParam});
+                            user = UserService.data ();
 
-                        $q
-                            .all ({
-                                user: userRequest.$promise ,
-                                starred: starredRequest.$promise
-                            })
-                            .then (function (data) {
-                                var user = data.user;
-                                user.starred = data.starred.length;
-
-                                deferred.resolve (user);
-                            }, function (error) {
-                                deferred.reject (error);
-                            });
+                        if ($.isEmptyObject (user)) {
+                            UserService
+                                .populate ($route.current.params.user)
+                                .then (function (data) {
+                                    deferred.resolve (data);
+                                }, function (error) {
+                                    deferred.reject (error);
+                                });
+                        }
+                        else deferred.resolve (user);
 
                         return deferred.promise;
                     }]

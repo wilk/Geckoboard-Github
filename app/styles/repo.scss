@@ -5,6 +5,12 @@
     border-bottom: 1px solid $softColor;
   }
 
+  .no-repo-message {
+    text-align: center;
+    margin-top: 18px;
+    color: #ddd;
+  }
+
   .statistics {
     text-align: center;
 
@@ -34,18 +40,18 @@
   }
 
   .percentage0 {
-    background-color: #B33232;
+    background-color: #DD1812;
   }
 
   .percentage1 {
-    background-color: #D4C366;
+    background-color: #FCCA03;
   }
 
   .percentage2 {
-    background-color: #A9D664;
+    background-color: #16A61E;
   }
 
   .percentage3 {
-    background-color: #98E9CC;
+    background-color: #0140CA;
   }
 }

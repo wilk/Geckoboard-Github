@@ -5,8 +5,15 @@
     background-color: #fff;
   }
 
+  .no-user-message {
+    text-align: center;
+    margin-top: 87px;
+    color: #ddd;
+  }
+
   .fixed-box {
     background-color: $softColor;
+    height: 240px;
     padding: 10px 0;
   }
 

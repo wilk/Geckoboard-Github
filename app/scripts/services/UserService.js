@@ -39,21 +39,6 @@ app.service ('UserService', ['$resource', '$q', 'GITHUB_API_URL', function ($res
                     deferred.resolve (userModel);
                 });
 
-            /*$q
-                .all ({
-                    user: userRequest.$promise ,
-                    starred: starredRequest.$promise
-                })
-                .then (function (data) {
-                    userModel = data.user;
-                    userModel.avatar_url += '&s=440';
-                    userModel.starred = data.starred.length;
-
-                    deferred.resolve (userModel);
-                }, function (error) {
-                    deferred.reject (error);
-                });*/
-
             return deferred.promise;
         }
     };

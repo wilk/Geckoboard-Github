@@ -4,7 +4,7 @@ app.service ('UserService', ['$resource', '$q', 'GITHUB_API_URL', function ($res
     var userResource = $resource (GITHUB_API_URL + '/users/:user', {user: '@user'}, {
             starred: {
                 method: 'GET' ,
-                url: GITHUB_API_URL + '/users/:user/starred' ,
+                url: GITHUB_API_URL + '/users/:user/starred?page=0&per_page=100' ,
                 isArray: true
             }
         }) ,
@@ -20,6 +20,26 @@ app.service ('UserService', ['$resource', '$q', 'GITHUB_API_URL', function ($res
                 starredRequest = userResource.starred ({user: user});
 
             $q
+                .when (userRequest.$promise)
+                .then (function (data) {
+                    userModel = data;
+                    userModel.avatar_url += '&s=440';
+                    return starredRequest.$promise;
+                }, function (error) {
+                    userModel = {};
+                    return starredRequest.$promise;
+                })
+                .then (function (data) {
+                    userModel.starred = data.length;
+
+                    deferred.resolve (userModel);
+                }, function (error) {
+                    userModel.starred = 0;
+
+                    deferred.resolve (userModel);
+                });
+
+            /*$q
                 .all ({
                     user: userRequest.$promise ,
                     starred: starredRequest.$promise
@@ -32,7 +52,7 @@ app.service ('UserService', ['$resource', '$q', 'GITHUB_API_URL', function ($res
                     deferred.resolve (userModel);
                 }, function (error) {
                     deferred.reject (error);
-                });
+                });*/
 
             return deferred.promise;
         }

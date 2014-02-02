@@ -1,7 +1,7 @@
 'use strict';
 
 app.service ('ReposService', ['$resource', '$q', 'GITHUB_API_URL', function ($resource, $q, GITHUB_API_URL) {
-    var reposResource = $resource (GITHUB_API_URL + '/users/:user/repos', {user: '@user'}) ,
+    var reposResource = $resource (GITHUB_API_URL + '/users/:user/repos?page=0&per_page=100', {user: '@user'}) ,
         reposModel = {};
 
     return {
@@ -20,9 +20,10 @@ app.service ('ReposService', ['$resource', '$q', 'GITHUB_API_URL', function ($re
 
                     reposModel = data;
 
-                    deferred.resolve (data);
+                    deferred.resolve (reposModel);
                 }, function (error) {
-                    deferred.reject (error);
+                    reposModel = {};
+                    deferred.resolve (reposModel);
                 });
 
             return deferred.promise;

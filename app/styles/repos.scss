@@ -5,7 +5,13 @@
     border-bottom: 1px solid $softColor;
   }
 
-  .spinner {
+  .no-repos-message {
+    text-align: center;
+    margin-top: 18px;
+    color: #ddd;
+  }
+
+    .spinner {
     background: url('../images/octocat-spinner-32.gif') no-repeat 0px 0px;
   }
 

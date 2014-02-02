@@ -1,93 +1,81 @@
 <div class="repo">
-    <div class="row border-split">
-        <!-- Icon -->
-        <div class="col-xs-3 col-md-1">
-            <span class="repo detail-icon mega-icon octicon-{{repo.fork ? 'repo-forked' : 'repo'}}"></span>
-        </div>
-
-        <!-- Description -->
-        <div class="col-xs-9 col-md-7">
-            <h3 class="repo repo-title"><a href="#/users/{{user.login}}">{{user.login}}</a> / {{repo.name}}</h3>
-            <p class="smooth">{{repo.description}}</p>
-        </div>
-
-        <!-- Statistics -->
-        <div class="col-xs-6 col-md-4">
-            <div class="table-responsive">
-                <table class="table repo statistics">
-                    <tr class="repo smooth">
-                        <td><span class="big-icon octicon-eye"></span></td>
-                        <td><span class="big-icon octicon-star"></span></td>
-                        <td><span class="big-icon octicon-fork"></span></td>
-                    </tr>
-                    <tr class="repo impressive">
-                        <td>{{repo.subscribers_count}}</td>
-                        <td>{{repo.stargazers_count}}</td>
-                        <td>{{repo.forks_count}}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+    <!-- No repo message -->
+    <div class="{{repo.hasData ? 'hide' : ''}}">
+        <p class="repo impressive no-repo-message">
+            <span class="mega-icon octicon-repo"></span>No repo found!
+        </p>
     </div>
 
-    <div class="row border-split {{repo.languages.length > 0 ? '' : hide}}">
-        <div ng-repeat="language in repo.languages" class="col-xs-{{(12/repo.languages.length) + 2}} col-md-{{12/repo.languages.length}} statistic-box percentage{{$index}}">
-            <div class="text-center statistic">
-                <p class="impressive">{{language.percentage}}%</p>
-                <p class="smooth">{{language.name}}</p>
+    <!-- Repo data -->
+    <div class="{{repo.hasData ? '' : 'hide'}}">
+        <div class="row border-split">
+            <!-- Icon -->
+            <div class="col-xs-3 col-md-1">
+                <span class="repo detail-icon mega-icon octicon-{{repo.fork ? 'repo-forked' : 'repo'}}"></span>
             </div>
-        </div>
-    </div>
 
-    <div class="row border-split">
-        <div class="col-xs-8 col-md-6 statistic-box">
-            <div class="text-center statistic">
-                <p class="impressive">{{repo.branches}}</p>
-                <p class="smooth">branches</p>
+            <!-- Description -->
+            <div class="col-xs-9 col-md-7">
+                <h3 class="repo repo-title"><a href="#/users/{{user.login}}">{{user.login}}</a> / {{repo.name}}</h3>
+                <p class="smooth">{{repo.description}}</p>
             </div>
-        </div>
-        <div class="col-xs-8 col-md-6 statistic-box">
-            <div class="text-center statistic">
-                <p class="impressive">{{repo.releases}}</p>
-                <p class="smooth">releases</p>
-            </div>
-        </div>
-    </div>
 
-    <div class="row border-split">
-        <div class="col-xs-8 col-md-6 statistic-box">
-            <div class="text-center statistic">
-                <p class="impressive">{{repo.issues}}</p>
-                <p class="smooth">issues</p>
+            <!-- Statistics -->
+            <div class="col-xs-6 col-md-4">
+                <div class="table-responsive">
+                    <table class="table repo statistics">
+                        <tr class="repo smooth">
+                            <td><span class="big-icon octicon-eye"></span></td>
+                            <td><span class="big-icon octicon-star"></span></td>
+                            <td><span class="big-icon octicon-fork"></span></td>
+                        </tr>
+                        <tr class="repo impressive">
+                            <td>{{repo.subscribers_count}}{{repo.subscribers_count === 100 ? '+' : ''}}</td>
+                            <td>{{repo.stargazers_count}}{{repo.stargazers_count === 100 ? '+' : ''}}</td>
+                            <td>{{repo.forks_count}}{{repo.forks_count === 100 ? '+' : ''}}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
-        <div class="col-xs-8 col-md-6 statistic-box">
-            <div class="text-center statistic">
-                <p class="impressive">{{repo.contributors}}</p>
-                <p class="smooth">contributors</p>
+
+        <div class="row border-split {{repo.languages.length > 0 ? '' : hide}}">
+            <div ng-repeat="language in repo.languages" class="col-xs-{{(12/repo.languages.length) + 2}} col-md-{{12/repo.languages.length}} statistic-box percentage{{$index}}">
+                <div class="text-center statistic">
+                    <p class="impressive">{{language.percentage}}%</p>
+                    <p class="smooth">{{language.name}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row border-split">
+            <div class="col-xs-8 col-md-6 statistic-box">
+                <div class="text-center statistic">
+                    <p class="impressive">{{repo.branches}}{{repo.branches === 100 ? '+' : ''}}</p>
+                    <p class="smooth">branch{{repo.branches !== 1 ? 'es' : ''}}</p>
+                </div>
+            </div>
+            <div class="col-xs-8 col-md-6 statistic-box">
+                <div class="text-center statistic">
+                    <p class="impressive">{{repo.releases}}{{repo.releases === 100 ? '+' : ''}}</p>
+                    <p class="smooth">release{{repo.releases !== 1 ? 's' : ''}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row border-split">
+            <div class="col-xs-8 col-md-6 statistic-box">
+                <div class="text-center statistic">
+                    <p class="impressive">{{repo.tags}}{{repo.tags === 100 ? '+' : ''}}</p>
+                    <p class="smooth">tag{{repo.tags !== 1 ? 's' : ''}}</p>
+                </div>
+            </div>
+            <div class="col-xs-8 col-md-6 statistic-box">
+                <div class="text-center statistic">
+                    <p class="impressive">{{repo.contributors}}{{repo.contributors === 100 ? '+' : ''}}</p>
+                    <p class="smooth">contributor{{repo.contributors !== 1 ? 's' : ''}}</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<!--<div>
-    <p><b>Name: </b>{{repoInfo.name}}</p>
-    <p><b>Full Name: </b>{{repoInfo.full_name}}</p>
-    <p><b>Url: </b>{{repoInfo.html_url}}</p>
-    <p><b>Description: </b>{{repoInfo.description}}</p>
-    <p><b>Fork: </b>{{repoInfo.fork}}</p>
-    <p><b>Stargazers: </b>{{repoInfo.stargazers_count}}</p>
-    <p><b>Watchers: </b>{{repoInfo.subscribers_count}}</p>
-    <p><b>Forks: </b>{{repoInfo.forks_count}}</p>
-    <p><b>Branches: </b>{{repoInfo.branches}}</p>
-    <p><b>Releases: </b>{{repoInfo.releases}}</p>
-    <p><b>Contributors: </b>{{repoInfo.contributors}}</p>
-    <p><b>Issues: </b>{{repoInfo.issues}}</p>
-    <p><b>Languages: </b>
-        <ul>
-            <li ng-repeat="(name, perc) in reoInfo.languages">{{name}}: {{perc}}</li>
-        </ul>
-    </p>
-    <p><b>Created at: </b>{{repoInfo.created_at}}</p>
-    <p><b>Updated at: </b>{{repoInfo.updated_at}}</p>
-</div>-->

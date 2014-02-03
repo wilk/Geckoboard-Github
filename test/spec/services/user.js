@@ -5,13 +5,16 @@ describe ('Service: UserService', function () {
         UserService = $appInjector.get ('UserService') ,
         GITHUB_API_URL = $appInjector.get ('GITHUB_API_URL') ,
         GITHUB_USER = $appInjector.get ('GITHUB_USER') ,
-        $q, $httpBackend;
+        $httpBackend;
 
     // @todo: load fixtures
 
+    beforeEach (function () {
+
+    });
+
     beforeEach (inject (function ($injector) {
         $httpBackend = $injector.get ('$httpBackend');
-        $q = $injector.get ('$q');
 
         $httpBackend
             .when ('GET', GITHUB_API_URL + '/users/' + GITHUB_USER)
@@ -19,15 +22,30 @@ describe ('Service: UserService', function () {
                 login: GITHUB_USER ,
                 id: 618009
             });
+
+        $httpBackend
+            .when ('GET', GITHUB_API_URL + '/users/' + GITHUB_USER + '/starred?page=0&per_page=100')
+            .respond ([{
+                id: 10
+            }, {
+                id: 20
+            }, {
+                id: 30
+            }]);
     }));
+
+    afterEach (function () {
+        $httpBackend.verifyNoOutstandingExpectation ();
+        $httpBackend.verifyNoOutstandingRequest ();
+    });
 
     describe ('when is initialized', function () {
         it ('should contains data and populate methods', function () {
             expect(UserService.data).toBeDefined ();
-            expect(typeof UserService.data).toBe ('function');
+            expect(UserService.data).toEqual (jasmine.any (Function));
 
             expect(UserService.populate).toBeDefined ();
-            expect(typeof UserService.populate).toBe ('function');
+            expect(UserService.populate).toEqual (jasmine.any (Function));
         });
 
         it ('should returns empty user data', function () {
@@ -38,14 +56,24 @@ describe ('Service: UserService', function () {
     describe ('when populate method is called', function () {
         it ('should returns user data', function () {
             $httpBackend.expectGET (GITHUB_API_URL + '/users/' + GITHUB_USER);
-            
-            $q
-                .when (UserService.populate (GITHUB_USER))
+            $httpBackend.expectGET (GITHUB_API_URL + '/users/' + GITHUB_USER + '/starred');
+
+            /*UserService.populate (GITHUB_USER);
+
+            $httpBackend.flush ();
+
+            expect(UserService.data ()).toEqual ({
+                login: GITHUB_USER ,
+                id: 618009 ,
+                starred: 3
+            });*/
+
+            UserService
+                .populate (GITHUB_USER)
                 .then (function () {
-                    expect(UserService.data ()).toEqual ({
-                        login: GITHUB_USER ,
-                        id: 618009
-                    });
+                    expect(UserService.data ()).toEqual ({});
+
+                    $httpBackend.flush ();
                 });
         });
     });

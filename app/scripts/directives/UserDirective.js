@@ -3,6 +3,6 @@
 app.directive ('ghUser', function () {
     return {
         restrict: 'E' ,
-        templateUrl: '../../views/partials/User.html'
+        templateUrl: 'views/partials/User.html'
     };
 });

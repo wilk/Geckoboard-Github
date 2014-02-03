@@ -22,7 +22,7 @@ var app = angular
                         var deferred = $q.defer () ,
                             user = UserService.data ();
 
-                        if ($.isEmptyObject (user)) {
+                        if ($.isEmptyObject (user) || user.login !== $route.current.params.user) {
                             UserService
                                 .populate ($route.current.params.user)
                                 .then (function (data) {
@@ -65,7 +65,7 @@ var app = angular
                         var deferred = $q.defer () ,
                             user = UserService.data ();
 
-                        if ($.isEmptyObject (user)) {
+                        if ($.isEmptyObject (user) || user.login !== $route.current.params.user) {
                             UserService
                                 .populate ($route.current.params.user)
                                 .then (function (data) {

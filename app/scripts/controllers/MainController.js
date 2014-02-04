@@ -6,8 +6,15 @@ app.controller ('MainController', ['$scope', 'user', 'repos', function ($scope, 
     });
 
     if (angular.isUndefined (user.id)) user.hasData = false;
-    else user.hasData = true;
+    else {
+        user.hasData = true;
+
+        if (angular.isUndefined ($scope.user)) user.avatar_url += '&s=440';
+        else if ($scope.user.id !== user.id) user.avatar_url += '&s=440';
+    }
 
     $scope.user = user;
     $scope.repos = repos;
 }]);
+
+

@@ -23,10 +23,11 @@ app.service ('UserService', ['$resource', '$q', 'GITHUB_API_URL', function ($res
                 .when (userRequest.$promise)
                 .then (function (data) {
                     userModel = data;
-                    userModel.avatar_url += '&s=440';
+
                     return starredRequest.$promise;
                 }, function (error) {
                     userModel = {};
+
                     return starredRequest.$promise;
                 })
                 .then (function (data) {

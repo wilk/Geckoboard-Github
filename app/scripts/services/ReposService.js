@@ -14,10 +14,6 @@ app.service ('ReposService', ['$resource', '$q', 'GITHUB_API_URL', function ($re
             $q
                 .when (reposResource.query({user: user}).$promise)
                 .then (function (data) {
-                    angular.forEach (data, function (value, key) {
-                        data[key].iconCls = value.fork ? 'octicon-repo-forked' : 'octicon-repo';
-                    });
-
                     reposModel = data;
 
                     deferred.resolve (reposModel);

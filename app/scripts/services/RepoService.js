@@ -1,6 +1,6 @@
 'use strict';
 
-app.service ('RepoService', ['$resource', '$q', '$filter', 'GITHUB_API_URL', function ($resource, $q, $filter, GITHUB_API_URL) {
+app.service ('RepoService', ['$resource', '$q', 'GITHUB_API_URL', function ($resource, $q, GITHUB_API_URL) {
     var repoResource = $resource (GITHUB_API_URL + '/repos/:user/:repo', {user: '@user', repo: '@repo'}, {
             branches: {
                 method: 'GET' ,
@@ -77,39 +77,7 @@ app.service ('RepoService', ['$resource', '$q', '$filter', 'GITHUB_API_URL', fun
                     return languagesRequest.$promise;
                 })
                 .then (function (data) {
-                    var orderBy = $filter ('orderBy') ,
-                        rawLanguages = [] ,
-                        languages = [] ,
-                        limit = 4 ,
-                        total = 0;
-
-                    angular.forEach (data, function (perc, lang) {
-                        if (lang !== '$promise' && lang !== '$resolved') {
-                            if (data.hasOwnProperty (lang)) {
-                                rawLanguages.push ({name: lang, percentage: perc});
-                            }
-                        }
-                    });
-
-                    if (rawLanguages.length > 0) {
-                        rawLanguages = orderBy (rawLanguages, 'perc', true);
-
-                        if (rawLanguages.length < limit) limit = rawLanguages.length;
-                        angular.forEach (rawLanguages, function (language) {
-                            languages.push (language);
-                            total += language.percentage;
-                            limit--;
-
-                            if (limit === 0) return false;
-                        });
-
-                        angular.forEach (languages, function (lang) {
-                            lang.percentage = Math.round ((lang.percentage * 100) / total);
-                        });
-
-                        repoData.languages = languages;
-                    }
-                    else repoData.languages = [];
+                    repoData.languages = data;
 
                     deferred.resolve (repoData);
                 }, function (error) {

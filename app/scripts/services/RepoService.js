@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Repo Service
+ * It loads everything associated to a repo
+ */
 app.service ('RepoService', ['$resource', '$q', 'GITHUB_API_URL', function ($resource, $q, GITHUB_API_URL) {
     var repoResource = $resource (GITHUB_API_URL + '/repos/:user/:repo', {user: '@user', repo: '@repo'}, {
             branches: {
@@ -26,9 +30,23 @@ app.service ('RepoService', ['$resource', '$q', 'GITHUB_API_URL', function ($res
                 method: 'GET' ,
                 url: GITHUB_API_URL + '/repos/:user/:repo/languages?page=0&per_page=100'
             }
-        });
+        }) ,
+        repoData = {}
 
     return {
+        /**
+         * Get repo model
+         * @returns {Object} Repo model
+         */
+        data: function () {
+            return repoData;
+        } ,
+        /**
+         * Populate repo model
+         * @param {String} user The user that owns the repo
+         * @param {String} repo The name of the repository
+         * @returns {promise} A promise that it will be resolved with repo model
+         */
         populate: function (user, repo) {
             var deferred = $q.defer () ,
                 repoRequest = repoResource.get ({user: user, repo: repo}) ,
@@ -36,9 +54,9 @@ app.service ('RepoService', ['$resource', '$q', 'GITHUB_API_URL', function ($res
                 releasesRequest = repoResource.releases ({user: user, repo: repo}) ,
                 contributorsRequest = repoResource.contributors ({user: user, repo: repo}) ,
                 tagsRequest = repoResource.tags ({user: user, repo: repo}) ,
-                languagesRequest = repoResource.languages ({user: user, repo: repo}) ,
-                repoData = {};
+                languagesRequest = repoResource.languages ({user: user, repo: repo});
 
+            // Requests chain
             $q
                 .when (repoRequest.$promise)
                 .then (function (data) {
@@ -81,7 +99,7 @@ app.service ('RepoService', ['$resource', '$q', 'GITHUB_API_URL', function ($res
 
                     deferred.resolve (repoData);
                 }, function (error) {
-                    repoData.languages = [];
+                    repoData.languages = {};
 
                     deferred.resolve (repoData);
                 });

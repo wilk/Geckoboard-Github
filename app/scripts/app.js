@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Geckoboard Github Application
+ * Built with love
+ */
 var app = angular
     .module ('geckoboardGithubApp', [
         'ngCookies' ,
@@ -18,10 +22,12 @@ var app = angular
                 templateUrl: 'views/main.html' ,
                 controller: 'MainController' ,
                 resolve: {
+                    // User data
                     user: ['$route', '$q', 'UserService', function ($route, $q, UserService) {
                         var deferred = $q.defer () ,
                             user = UserService.data ();
 
+                        // Reload user data only if the user has changed or it hasn't loaded yet
                         if ($.isEmptyObject (user) || user.login !== $route.current.params.user) {
                             UserService
                                 .populate ($route.current.params.user)
@@ -35,11 +41,14 @@ var app = angular
 
                         return deferred.promise;
                     }] ,
-                    repos: ['$route', '$q', 'ReposService', function ($route, $q, ReposService) {
+                    // Repos list
+                    repos: ['$route', '$q', 'UserService', 'ReposService', function ($route, $q, UserService, ReposService) {
                         var deferred = $q.defer () ,
+                            user = UserService.data () ,
                             repos = ReposService.data ();
 
-                        if ($.isEmptyObject (repos)) {
+                        // Reload repos data only if the user has changed or repos list hasn't loaded yet
+                        if ($.isEmptyObject (repos) || user.login !== $route.current.params.user) {
                             ReposService
                                 .populate ($route.current.params.user)
                                 .then (function (data) {
@@ -58,13 +67,16 @@ var app = angular
                 templateUrl: 'views/main.html' ,
                 controller: 'RepoController' ,
                 resolve: {
+                    // Repo data
                     repo: ['$route', '$q', 'RepoService', function ($route, $q, RepoService) {
                         return RepoService.populate ($route.current.params.user, $route.current.params.repo);
                     }] ,
+                    // User data
                     user: ['$route', '$q', 'UserService', function ($route, $q, UserService) {
                         var deferred = $q.defer () ,
                             user = UserService.data ();
 
+                        // Reload user data only if the user has changed or it hasn't loaded
                         if ($.isEmptyObject (user) || user.login !== $route.current.params.user) {
                             UserService
                                 .populate ($route.current.params.user)

@@ -16,7 +16,7 @@ app.controller ('MainController', ['$scope', 'user', 'repos', function ($scope, 
         user.hasData = true;
 
         // Load a 220x220 avatar
-        if (user.avatar_url.substr (-6, 6) !== '&s=440') user.avatar_url += '&s=440';
+        if (user.avatar_url && user.avatar_url.substr (-6, 6) !== '&s=440') user.avatar_url += '&s=440';
     }
 
     $scope.user = user;

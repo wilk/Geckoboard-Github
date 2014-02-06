@@ -67,7 +67,7 @@ describe ('Service: RepoService', function () {
                     }
                 }]);
             $httpBackend
-                .when ('GET', GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/releases?page=0&per_page=100')
+                .when ('GET', GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/commits?page=0&per_page=100')
                 .respond ([]);
             $httpBackend
                 .when ('GET', GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/contributors?page=0&per_page=100')
@@ -110,7 +110,7 @@ describe ('Service: RepoService', function () {
 
             $httpBackend.expectGET (GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO);
             $httpBackend.expectGET (GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/branches?page=0&per_page=100');
-            $httpBackend.expectGET (GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/releases?page=0&per_page=100');
+            $httpBackend.expectGET (GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/commits?page=0&per_page=100');
             $httpBackend.expectGET (GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/contributors?page=0&per_page=100');
             $httpBackend.expectGET (GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/tags?page=0&per_page=100');
             $httpBackend.expectGET (GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/languages?page=0&per_page=100');
@@ -125,7 +125,7 @@ describe ('Service: RepoService', function () {
             expect(repo.description).toBe ('Realtime MVC Framework for Node.js');
             expect(repo.fork).toBe (false);
             expect(repo.branches).toBe (3);
-            expect(repo.releases).toBe (0);
+            expect(repo.commits).toBe (0);
             expect(repo.contributors).toBe (2);
             expect(repo.tags).toBe (2);
             expect(repo.languages.JavaScript).toBe (22830);
@@ -142,7 +142,7 @@ describe ('Service: RepoService', function () {
                 .when ('GET', GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/branches?page=0&per_page=100')
                 .respond (404);
             $httpBackend
-                .when ('GET', GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/releases?page=0&per_page=100')
+                .when ('GET', GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/commits?page=0&per_page=100')
                 .respond (404);
             $httpBackend
                 .when ('GET', GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/contributors?page=0&per_page=100')
@@ -156,7 +156,7 @@ describe ('Service: RepoService', function () {
 
             $httpBackend.expectGET (GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO);
             $httpBackend.expectGET (GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/branches?page=0&per_page=100');
-            $httpBackend.expectGET (GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/releases?page=0&per_page=100');
+            $httpBackend.expectGET (GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/commits?page=0&per_page=100');
             $httpBackend.expectGET (GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/contributors?page=0&per_page=100');
             $httpBackend.expectGET (GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/tags?page=0&per_page=100');
             $httpBackend.expectGET (GITHUB_API_URL + '/repos/' + GITHUB_USER + '/' + GITHUB_USER_REPO + '/languages?page=0&per_page=100');
@@ -169,7 +169,7 @@ describe ('Service: RepoService', function () {
 
             expect(repo.name).toBeUndefined ();
             expect(repo.branches).toBe (0);
-            expect(repo.releases).toBe (0);
+            expect(repo.commits).toBe (0);
             expect(repo.contributors).toBe (0);
             expect(repo.tags).toBe (0);
             expect(repo.languages).toEqual ({});

@@ -11,9 +11,9 @@ app.service ('RepoService', ['$resource', '$q', 'GITHUB_API_URL', function ($res
                 url: GITHUB_API_URL + '/repos/:user/:repo/branches?page=0&per_page=100' ,
                 isArray: true
             } ,
-            releases: {
+            commits: {
                 method: 'GET' ,
-                url: GITHUB_API_URL + '/repos/:user/:repo/releases?page=0&per_page=100' ,
+                url: GITHUB_API_URL + '/repos/:user/:repo/commits?page=0&per_page=100' ,
                 isArray: true
             } ,
             contributors: {
@@ -51,7 +51,7 @@ app.service ('RepoService', ['$resource', '$q', 'GITHUB_API_URL', function ($res
             var deferred = $q.defer () ,
                 repoRequest = repoResource.get ({user: user, repo: repo}) ,
                 branchesRequest = repoResource.branches ({user: user, repo: repo}) ,
-                releasesRequest = repoResource.releases ({user: user, repo: repo}) ,
+                commitsRequest = repoResource.commits ({user: user, repo: repo}) ,
                 contributorsRequest = repoResource.contributors ({user: user, repo: repo}) ,
                 tagsRequest = repoResource.tags ({user: user, repo: repo}) ,
                 languagesRequest = repoResource.languages ({user: user, repo: repo});
@@ -68,16 +68,16 @@ app.service ('RepoService', ['$resource', '$q', 'GITHUB_API_URL', function ($res
                 })
                 .then (function (data) {
                     repoData.branches = data.length;
-                    return releasesRequest.$promise;
+                    return commitsRequest.$promise;
                 }, function (error) {
                     repoData.branches = 0;
-                    return releasesRequest.$promise;
+                    return commitsRequest.$promise;
                 })
                 .then (function (data) {
-                    repoData.releases = data.length;
+                    repoData.commits = data.length;
                     return contributorsRequest.$promise;
                 }, function (error) {
-                    repoData.releases = 0;
+                    repoData.commits = 0;
                     return contributorsRequest.$promise;
                 })
                 .then (function (data) {

@@ -11,7 +11,7 @@ app.controller ('RepoController', ['$scope', '$filter', 'repo', 'user', function
         user.hasData = true;
 
         // Load a 220x220 avatar
-        if (user.avatar_url.substr (-6, 6) !== '&s=440') user.avatar_url += '&s=440';
+        if (user.avatar_url && user.avatar_url.substr (-6, 6) !== '&s=440') user.avatar_url += '&s=440';
     }
 
     // Check if repo data has been loaded

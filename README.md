@@ -16,7 +16,7 @@ Suggestions:
 - Write some tests
 
 ## Choises
-I choose [**AngularJS**](http://angularjs.org/) as Javascript framework, [**Bootstrap**](http://getbootstrap.com/) as CSS (SASS) framework, [**Yeoman**](http://yeoman.io/) angular generator to build the folder structure and [**Jasmine**](http://pivotal.github.io/jasmine/) as the test suite.
+I choose [**AngularJS**](http://angularjs.org/) as Javascript framework, [**Bootstrap**](http://getbootstrap.com/) as CSS (SASS) framework, [**Yeoman**](http://yeoman.io/) angular generator to build the folder structure and [**Jasmine**](https://jasmine.github.io/) as the test suite.
 
 ## Tree folder
 The entire app is located under *app* folder.
